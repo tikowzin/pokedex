@@ -1,0 +1,721 @@
+/* =====================================================================
+   style.css — folha de estilos ÚNICA das 3 páginas
+   [REQ 1.5] CSS em arquivo separado, linkado no <head> de cada HTML.
+   [REQ 6.1] MOBILE FIRST (aula de Media Queries): o CSS base vale para
+   celulares e as media queries com min-width ampliam para telas maiores.
+   Pontos de quebra (os mesmos da aula):
+     até 600px -> celulares (estilo base)
+     601px     -> tablets
+     1025px    -> laptops e desktops
+   ===================================================================== */
+
+/* [REQ 7.1] Variáveis CSS (aula de Variáveis CSS): poucas cores, harmoniosas */
+:root {
+  --escuro: #222222;
+  --vermelho: #ffcb05;
+  --amarelo: #ffcb05;
+  --fundo: #f5f5f5;
+  --borda: #cccccc;
+  --texto-suave: #555555;
+
+  /* [REQ 1.4] altura FIXA do header no celular */
+  --altura-header: 110px;
+}
+
+/* Reset (aula "CSS de fábrica, Box Model e Reset") */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* [REQ 1.4] NAV ESTÁVEL: a barra de rolagem fica sempre presente.
+   Assim páginas curtas e longas têm a mesma largura e os links do nav
+   não "pulam" ao trocar de página (aula vh-vs-porcento: overflow). */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  color: var(--escuro);
+  background-color: var(--fundo);
+}
+
+/* o main cresce e empurra o footer para o fim da página (aula nav-footer) */
+main {
+  flex: 1;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: #0b5cad;
+}
+
+/* [REQ 6.2] Boas práticas com imagens (aula): nunca passam do container
+   e mantêm a proporção */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ---------------------------------------------------------------------
+   Botões
+   --------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border: 2px solid var(--escuro);
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: var(--escuro);
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #e6e6e6;
+}
+
+.btn--primario {
+  background-color: var(--vermelho);
+  border-color: var(--vermelho);
+  color: #ffffff;
+}
+
+.btn--primario:hover {
+  background-color: #a30000;
+  border-color: #a30000;
+}
+
+/* =====================================================================
+   [REQ 1.1] HEADER (igual nas 3 páginas)
+   [REQ 1.4] position: sticky + altura fixa (aula de position)
+   ===================================================================== */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--altura-header);
+  background-color: var(--escuro);
+}
+
+/* celular: logo em cima e nav embaixo */
+.cabecalho__interno {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logo img {
+  width: 170px;
+}
+
+.nav__lista {
+  display: flex;
+  gap: 8px;
+}
+
+/* todos os links têm a mesma borda (transparente), então a largura
+   e a altura não mudam quando um link fica ativo */
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-bottom: 3px solid transparent;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav__link:hover {
+  color: var(--amarelo);
+}
+
+/* [REQ 1.1] Link da PÁGINA ATUAL destacado (classe active, como na aula) */
+.nav__link.active {
+  border-bottom: 3px solid var(--amarelo);
+}
+
+/* [REQ 5.2] CONTADOR estilo carrinho, ao lado de "Favoritos" */
+.contador {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 1px 6px;
+  border-radius: 11px;
+  background-color: var(--vermelho);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.contador.vazio {
+  background-color: #666666;
+}
+
+/* =====================================================================
+   [REQ 1.2] FOOTER (igual nas 3 páginas)
+   ===================================================================== */
+.rodape {
+  margin: 48px 0 0;
+  padding: 24px 0;
+  background-color: var(--escuro);
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.rodape p {
+  margin: 8px 0 0;
+}
+
+.rodape a {
+  color: var(--amarelo);
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.redes a {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.redes a:hover {
+  color: var(--amarelo);
+}
+
+/* ---------------------------------------------------------------------
+   Títulos
+   --------------------------------------------------------------------- */
+.titulo-pagina {
+  margin: 24px 0 8px;
+  font-size: 1.8rem;
+}
+
+.titulo-secao {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+}
+
+.subtitulo-pagina {
+  color: var(--texto-suave);
+}
+
+/* =====================================================================
+   [REQ 2.1] HERO (Index)
+   ===================================================================== */
+.hero {
+  padding: 32px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--borda);
+}
+
+/* celular: texto em cima e imagem embaixo */
+.hero__grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.hero__titulo {
+  margin: 0 0 12px;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.hero__subtitulo {
+  margin: 0 0 20px;
+  color: var(--texto-suave);
+}
+
+.hero__acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* [REQ 6.2] CLS zero na hero: width/height no HTML + aspect-ratio aqui
+   reservam o espaço da imagem ANTES dela carregar (aula de imagens) */
+.hero__imagem {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: var(--fundo);
+}
+
+/* =====================================================================
+   [REQ 2.2] SEGUNDA SEÇÃO (o que o site faz)
+   ===================================================================== */
+.recursos {
+  padding: 40px 0 0;
+}
+
+.recursos__lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 16px 0 0;
+}
+
+.recurso {
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+
+.recurso h3 {
+  margin: 0 0 8px;
+}
+
+.recurso p {
+  margin: 0 0 8px;
+  color: var(--texto-suave);
+}
+
+.recurso a {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 16px;
+  border: 2px solid #ffcb05;
+  border-radius: 4px;
+  background-color: #ffcb05;
+  color: #222222;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.recurso a:hover {
+  border-color: #e6b900;
+  background-color: #e6b900;
+}
+
+.recurso a:focus-visible {
+  outline: 3px solid #222222;
+  outline-offset: 3px;
+}
+
+/* =====================================================================
+   [REQ 3.1] BARRA DE BUSCA (Galeria)
+   ===================================================================== */
+.busca__form {
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+
+.busca__rotulo {
+  display: block;
+  margin: 0 0 8px;
+}
+
+/* celular: campo e botões empilhados */
+.busca__linha {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.busca__campo {
+  padding: 10px;
+  border: 2px solid var(--borda);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.busca__dica {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+/* =====================================================================
+   [REQ 3.2] TABELA DE TIPOS
+   ===================================================================== */
+.tipos {
+  margin: 24px 0 0;
+}
+
+/* a tabela rola dentro da caixa (overflow) e o cabeçalho fica preso no
+   topo com position: sticky (exercício 05 da aula de position) */
+.tabela-rolagem {
+  height: 300px;
+  overflow: auto;
+  margin: 8px 0 0;
+  background-color: #ffffff;
+  border: 1px solid var(--borda);
+}
+
+.tabela-tipos {
+  width: 100%;
+}
+
+.tabela-tipos th,
+.tabela-tipos td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid var(--borda);
+}
+
+.tabela-tipos th {
+  position: sticky;
+  top: 0;
+  background-color: var(--escuro);
+  color: #ffffff;
+}
+
+/* Selo de tipo (tabela, cards e resumo) */
+.selo-tipo {
+  margin: 2px;
+  padding: 2px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #666666;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+button.selo-tipo {
+  min-width: 100px;
+  padding: 6px 10px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* [REQ 7.1] cor de cada tipo (texto escuro nas cores claras = contraste) */
+.tipo-normal   { background-color: #a8a8a0; color: #222222; }
+.tipo-fire     { background-color: #d42020; color: #ffffff; }
+.tipo-water    { background-color: #1f6fd6; color: #ffffff; }
+.tipo-grass    { background-color: #2e7d1e; color: #ffffff; }
+.tipo-electric { background-color: #fac000; color: #222222; }
+.tipo-ice      { background-color: #3dcef3; color: #222222; }
+.tipo-fighting { background-color: #ff8000; color: #222222; }
+.tipo-poison   { background-color: #8a3cc4; color: #ffffff; }
+.tipo-ground   { background-color: #915121; color: #ffffff; }
+.tipo-flying   { background-color: #81b9ef; color: #222222; }
+.tipo-psychic  { background-color: #c8285e; color: #ffffff; }
+.tipo-bug      { background-color: #91a119; color: #222222; }
+.tipo-rock     { background-color: #afa981; color: #222222; }
+.tipo-ghost    { background-color: #704170; color: #ffffff; }
+.tipo-dragon   { background-color: #4b5ad8; color: #ffffff; }
+.tipo-dark     { background-color: #4f3f40; color: #ffffff; }
+.tipo-steel    { background-color: #60a1b8; color: #222222; }
+.tipo-fairy    { background-color: #ef70ef; color: #222222; }
+
+/* =====================================================================
+   [REQ 4.2] LAYOUT DA GALERIA
+   Celular (base): 1 coluna. Tablet e desktop: nas media queries do final.
+   ===================================================================== */
+.galeria {
+  margin: 24px 0 0;
+}
+
+.galeria__status {
+  margin: 8px 0 16px;
+  color: var(--texto-suave);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.galeria__mais {
+  margin: 24px 0 0;
+  text-align: center;
+}
+
+/* =====================================================================
+   [REQ 4.1] CARDS — elementos em COLUNA e CENTRALIZADOS no contra eixo
+   flex-direction: column -> eixo principal na vertical
+   align-items: center    -> centraliza no contra eixo (horizontal)
+   ===================================================================== */
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* [REQ 6.2] CLS zero nos cards: a <img> tem width/height no HTML e
+   aspect-ratio aqui (o espaço é reservado antes de carregar) */
+.card img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: var(--fundo);
+}
+
+.card h3 {
+  font-size: 1.15rem;
+}
+
+.card__tipos {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.card .btn {
+  width: 100%;
+}
+
+/* [REQ 5.1] Botão favoritar (classe "ativo" quando já está na coleção) */
+.btn--favoritar {
+  background-color: var(--escuro);
+  border-color: var(--escuro);
+  color: #ffffff;
+}
+
+.btn--favoritar:hover {
+  background-color: #444444;
+}
+
+.btn--favoritar.ativo {
+  background-color: var(--vermelho);
+  border-color: var(--vermelho);
+}
+
+/* [REQ 5.4] Botão remover */
+.btn--remover {
+  border-color: var(--vermelho);
+  color: var(--vermelho);
+}
+
+.btn--remover:hover {
+  background-color: var(--vermelho);
+  color: #ffffff;
+}
+
+/* enquanto o pokémon carrega, o espaço do card já está reservado
+   (evita CLS) e mostra o spinner da aula de animações */
+.carregando-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  background-color: #ffffff;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--borda);
+  border-top-color: var(--vermelho);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =====================================================================
+   [REQ 5.5] RESUMO ESTILO CARRINHO (Favoritos)
+   ===================================================================== */
+.resumo {
+  margin: 16px 0 0;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+
+/* celular: 2 colunas de números */
+.resumo__dados {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+
+.resumo__linha {
+  padding: 8px;
+  border-radius: 4px;
+  background-color: var(--fundo);
+  text-align: center;
+}
+
+.resumo__linha dt {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.resumo__linha dd {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.resumo__subtitulo {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.resumo__tipos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.resumo__tipo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background-color: var(--fundo);
+}
+
+.resumo__qtd {
+  font-weight: bold;
+}
+
+.aviso-vazio {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.aviso-vazio p {
+  margin: 0 0 12px;
+}
+
+.aviso-vazio img {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 12px;
+}
+
+/* respeita quem prefere menos movimento (aula de animações) */
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
+
+/* =====================================================================
+   [REQ 6.1] PONTO DE QUEBRA — TABLETS (a partir de 601px)
+   [REQ 4.2] Galeria em 2 colunas
+   ===================================================================== */
+@media (min-width: 601px) {
+  :root {
+    --altura-header: 70px;
+  }
+
+  /* header em uma linha: logo à esquerda e nav à direita */
+  .cabecalho__interno {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    width: 200px;
+  }
+
+  .nav__lista {
+    gap: 16px;
+  }
+
+  .hero__titulo {
+    font-size: 2.4rem;
+  }
+
+  .hero__acoes {
+    flex-direction: row;
+  }
+
+  .busca__linha {
+    flex-direction: row;
+  }
+
+  .busca__campo {
+    flex: 1;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resumo__dados {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .resumo__tipos {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* =====================================================================
+   [REQ 6.1] PONTO DE QUEBRA — LAPTOPS E DESKTOPS (a partir de 1025px)
+   [REQ 4.2] Galeria em 4 colunas
+   ===================================================================== */
+@media (min-width: 1025px) {
+  .hero {
+    padding: 56px 0;
+  }
+
+  /* hero em 2 colunas: texto à esquerda e imagem à direita */
+  .hero__grade {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .hero__titulo {
+    font-size: 2.8rem;
+  }
+
+  .recursos__lista {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

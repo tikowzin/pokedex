@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokéColeção | Favoritos</title>
+
+  <!-- Google Fonts (código sugerido pelo site, como na aula) e Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- [REQ 1.5] CSS em arquivo separado -->
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+
+  <!-- ===============================================================
+       [REQ 1.1] HEADER — igual nas 3 páginas: logo em SVG + nav.
+       O link da página atual recebe a classe "active".
+       =============================================================== -->
+  <header class="cabecalho">
+    <div class="container cabecalho__interno">
+      <a href="index.html" class="logo">
+        <img src="img/logo.svg" alt="PokéColeção - página inicial" width="224" height="48">
+      </a>
+      <nav aria-label="Navegação principal">
+        <ul class="nav__lista">
+          <li><a href="index.html" class="nav__link">Início</a></li>
+          <li><a href="galeria.html" class="nav__link">Galeria</a></li>
+          <li>
+            <a href="favoritos.html" class="nav__link active">
+              Favoritos
+              <!-- [REQ 5.2] Contador estilo carrinho -->
+              <span class="contador vazio" id="contador-favoritos">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="titulo-pagina">Meus Favoritos</h1>
+      <p class="subtitulo-pagina">Sua coleção fica salva neste navegador, como um carrinho de compras.</p>
+
+      <!-- ===============================================================
+           [REQ 5.5] RESUMO ESTILO CARRINHO — no topo da página: média dos
+           pesos, média das alturas, média de HP e lista dos tipos.
+           =============================================================== -->
+      <section class="resumo">
+        <h2 class="titulo-secao">Resumo da coleção</h2>
+        <dl id="resumo-dados" class="resumo__dados"></dl>
+        <h3 class="resumo__subtitulo">Tipos dos escolhidos</h3>
+        <ul id="resumo-tipos" class="resumo__tipos"></ul>
+      </section>
+
+      <!-- ===============================================================
+           [REQ 5.3] LISTA SALVA NO localStorage — mesmos cards e mesmo grid
+           da galeria. [REQ 5.4] Cada card tem o botão "Remover".
+           =============================================================== -->
+      <section class="favoritos">
+        <h2 class="titulo-secao">Pokémons escolhidos</h2>
+        <ul id="lista-favoritos" class="grid"></ul>
+
+        <div id="favoritos-vazio" class="aviso-vazio" hidden>
+          <img src="img/pokebola.svg" alt="" width="100" height="100">
+          <p>Sua coleção ainda está vazia.</p>
+          <a href="galeria.html" class="btn btn--primario">Ir para a galeria</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ===============================================================
+       [REQ 1.2] FOOTER — igual nas 3 páginas: redes sociais
+       (Font Awesome) e direitos autorais.
+       =============================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <nav aria-label="Redes sociais">
+        <ul class="redes">
+          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="github"><i class="fa-brands fa-github"></i></a></li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="instagram"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="youtube"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+      </nav>
+      <!-- [REQ 1.3] Data preenchida pelo js/main.js -->
+      <p>Hoje é <time id="data-atual"></time></p>
+      <p>&copy; <span id="ano-atual">2026</span> PokéColeção. Todos os direitos reservados.
+         Dados da <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokeAPI</a>.</p>
+    </div>
+  </footer>
+  <!-- [REQ 1.5] JS em arquivos separados, com defer (main.js global + script da página) -->
+  <script src="js/main.js" defer></script>
+  <script src="js/favoritos.js" defer></script>
+</body>
+</html>

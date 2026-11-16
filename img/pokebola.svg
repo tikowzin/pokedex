@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="475" height="475">
+  <!-- Imagem local de reserva para pokémons sem ilustração na API -->
+  <circle cx="50" cy="50" r="44" fill="#eef1f8" stroke="#c5cbe0" stroke-width="6"/>
+  <path d="M6 50a44 44 0 0 1 88 0z" fill="#dde2f0" stroke="#c5cbe0" stroke-width="6"/>
+  <circle cx="50" cy="50" r="13" fill="#eef1f8" stroke="#c5cbe0" stroke-width="6"/>
+</svg>

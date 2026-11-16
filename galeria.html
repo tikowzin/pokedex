@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokéColeção | Galeria</title>
+
+  <!-- Google Fonts (código sugerido pelo site, como na aula) e Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- [REQ 1.5] CSS em arquivo separado -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+  <!-- ===============================================================
+       [REQ 1.1] HEADER — igual nas 3 páginas: logo em SVG + nav.
+       O link da página atual recebe a classe "active".
+       =============================================================== -->
+  <header class="cabecalho">
+    <div class="container cabecalho__interno">
+      <a href="index.html" class="logo">
+        <img src="img/logo.svg" alt="PokéColeção - página inicial" width="224" height="48">
+      </a>
+      <nav aria-label="Navegação principal">
+        <ul class="nav__lista">
+          <li><a href="index.html" class="nav__link">Início</a></li>
+          <li><a href="galeria.html" class="nav__link active">Galeria</a></li>
+          <li>
+            <a href="favoritos.html" class="nav__link">
+              Favoritos
+              <!-- [REQ 5.2] Contador estilo carrinho -->
+              <span class="contador vazio" id="contador-favoritos">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===============================================================
+         [REQ 3.1] BARRA DE BUSCA — no início do main, com mensagem clara:
+         busca por TIPO de pokémon ou pelo NOME de um pokémon específico.
+         =============================================================== -->
+    <section class="busca">
+      <div class="container">
+        <h1 class="titulo-pagina">Galeria de Pokémons</h1>
+        <form id="form-busca" class="busca__form">
+          <label for="campo-busca" class="busca__rotulo">
+            Busque por <strong>tipo</strong> de pokémon (ex.: fogo, água, fire)
+            ou pelo <strong>nome</strong> de um pokémon específico (ex.: pikachu)
+          </label>
+          <div class="busca__linha">
+            <input type="text" id="campo-busca" name="busca" class="busca__campo"
+                   placeholder="Digite um tipo ou um nome...">
+            <button type="submit" class="btn btn--primario">Buscar</button>
+            <button type="button" id="btn-limpar" class="btn">Limpar</button>
+          </div>
+          <p class="busca__dica">
+            Deixe o campo vazio e clique em Buscar para ver todos.
+            Não sabe o tipo? Consulte a tabela abaixo e clique em um deles.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         [REQ 3.2] TABELA ILUSTRATIVA DOS TIPOS — ajuda o usuário a
+         escolher o tipo para a busca (cada tipo é um botão com data-tipo).
+         =============================================================== -->
+    <section class="tipos">
+      <div class="container">
+        <h2 class="titulo-secao">Tabela de tipos</h2>
+        <div class="tabela-rolagem">
+          <table id="tabela-tipos" class="tabela-tipos">
+            <thead>
+              <tr>
+                <th>Tipo (clique para buscar)</th>
+                <th>Pode digitar</th>
+                <th>Exemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><button type="button" class="selo-tipo tipo-normal" data-tipo="normal">Normal</button></td><td>normal</td><td>Eevee</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-fire" data-tipo="fogo">Fogo</button></td><td>fogo, fire</td><td>Charmander</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-water" data-tipo="água">Água</button></td><td>água, water</td><td>Squirtle</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-grass" data-tipo="planta">Planta</button></td><td>planta, grama, grass</td><td>Bulbasaur</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-electric" data-tipo="elétrico">Elétrico</button></td><td>elétrico, electric</td><td>Pikachu</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-ice" data-tipo="gelo">Gelo</button></td><td>gelo, ice</td><td>Glaceon</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-fighting" data-tipo="lutador">Lutador</button></td><td>lutador, luta, fighting</td><td>Machop</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-poison" data-tipo="venenoso">Venenoso</button></td><td>venenoso, veneno, poison</td><td>Ekans</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-ground" data-tipo="terrestre">Terrestre</button></td><td>terrestre, terra, ground</td><td>Sandshrew</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-flying" data-tipo="voador">Voador</button></td><td>voador, flying</td><td>Pidgey</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-psychic" data-tipo="psíquico">Psíquico</button></td><td>psíquico, psychic</td><td>Abra</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-bug" data-tipo="inseto">Inseto</button></td><td>inseto, bug</td><td>Caterpie</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-rock" data-tipo="pedra">Pedra</button></td><td>pedra, rocha, rock</td><td>Onix</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-ghost" data-tipo="fantasma">Fantasma</button></td><td>fantasma, ghost</td><td>Gastly</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-dragon" data-tipo="dragão">Dragão</button></td><td>dragão, dragon</td><td>Dratini</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-dark" data-tipo="sombrio">Sombrio</button></td><td>sombrio, noturno, dark</td><td>Umbreon</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-steel" data-tipo="aço">Aço</button></td><td>aço, metal, steel</td><td>Steelix</td></tr>
+              <tr><td><button type="button" class="selo-tipo tipo-fairy" data-tipo="fada">Fada</button></td><td>fada, fairy</td><td>Clefairy</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         [REQ 3.3] LISTAGEM COMPLETA + [REQ 4] CARDS E GRID
+         Sem filtro aparecem todos os pokémons da API (js/galeria.js).
+         Grid: 1 coluna no celular, 2 no tablet e 4 no desktop (CSS).
+         =============================================================== -->
+    <section class="galeria">
+      <div class="container">
+        <h2 class="titulo-secao">Pokémons</h2>
+        <p id="status-galeria" class="galeria__status">Carregando…</p>
+
+        <ul id="grid-galeria" class="grid"></ul>
+
+        <div id="area-mais" class="galeria__mais" hidden>
+          <button type="button" id="btn-carregar-mais" class="btn">Carregar mais pokémons</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===============================================================
+       [REQ 1.2] FOOTER — igual nas 3 páginas: redes sociais
+       (Font Awesome) e direitos autorais.
+       =============================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <nav aria-label="Redes sociais">
+        <ul class="redes">
+          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="github"><i class="fa-brands fa-github"></i></a></li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="instagram"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="youtube"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+      </nav>
+      <!-- [REQ 1.3] Data preenchida pelo js/main.js -->
+      <p>Hoje é <time id="data-atual"></time></p>
+      <p>&copy; <span id="ano-atual">2026</span> PokéColeção. Todos os direitos reservados.
+         Dados da <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokeAPI</a>.</p>
+    </div>
+  </footer>
+  <!-- [REQ 1.5] JS em arquivos separados, com defer (main.js global + script da página) -->
+  <script src="js/main.js" defer></script>
+  <script src="js/galeria.js" defer></script>
+</body>
+</html>
